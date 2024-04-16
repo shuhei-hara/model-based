@@ -400,7 +400,7 @@ sm_circular = pystan.StanModel(model_code=stan_model_circular)
 data, image_data = preprocessing.preprocess()
 
 # Change the likelihood value 
-likelihood_dir='/Users/shuhei/Desktop/workspace/behavior/new_likelihood.csv'
+likelihood_dir= # supplementary task data
 like_data = pd.read_csv(likelihood_dir)
 
 for i in range(1,101):
@@ -414,7 +414,6 @@ allsub = []
 scz = []
 con = []
 number_sub = 21
-# number_sub=2
 sigma = 0
 rng = np.random.default_rng(666)
 
@@ -524,8 +523,7 @@ for sub in range(number_sub):
 # weighted
 df_wei = pd.DataFrame(list(itertools.chain.from_iterable(weighted_matrix.values)),columns=['values'])
 df_wei['parameters'] = 'a'
-subject_ID = ['DI', 'HM', 'RM', 'KH', 'MF', 'MOt','FA', 'KT', 'SY', 'TY',
-              'MN', 'NK', 'SK', 'NKu','MY', 'YA', 'TK', 'TN', 'HH', 'MYa', 'HK']
+subject_ID = # subject list
 
 for i in range(21):
     df_wei.iat[2*i,1] = 'wp'
@@ -537,18 +535,16 @@ for i in range(21):
 df_wei.loc[0:19,'group'] = 'scz'
 df_wei.loc[20:41,'group'] = 'con'
 
-df_wei.to_csv('result_peggy/estimated_weighted.csv') 
+df_wei.to_csv('{output directory}/estimated_weighted.csv') 
 
 sns.catplot(data=df_wei,x='parameters',y='values', kind='bar',hue='group',ci=68)
-plt.savefig("result_peggy/estimated_parameters.jpg")
+plt.savefig("{output directory}/estimated_parameters.jpg")
 plt.show()
 
 # Alpha
 df_alp = pd.DataFrame(list(itertools.chain.from_iterable(alpha_matrix.values)),columns=['values'])
 df_alp['parameters'] = 'a'
-subject_ID = ['DI', 'HM', 'RM', 'KH', 'MF', 'MOt','FA', 'KT', 'SY', 'TY',
-              'MN', 'NK', 'SK', 'NKu','MY', 'YA', 'TK', 'TN', 'HH', 'MYa', 'HK']
-
+subject_ID = # subject list
 for i in range(21):
     df_alp.iat[2*i,1] = 'alpha_p'
     df_alp.iat[2*i+1,1] = "alpha_s"
@@ -559,19 +555,17 @@ for i in range(21):
 df_alp.loc[0:19,'group'] = 'scz'
 df_alp.loc[20:41,'group'] = 'con'
 
-df_alp.to_csv('result_peggy/estimated_alpha.csv') 
+df_alp.to_csv('{output directory}/estimated_alpha.csv') 
 
 sns.catplot(data=df_alp,x='parameters',y='values', kind='bar',hue='group',ci=68)
-plt.savefig("result_peggy/estimated_alpha.jpg")
+plt.savefig("{output directory}/estimated_alpha.jpg")
 plt.show()
 
 
 
 df_all = pd.DataFrame(list(itertools.chain.from_iterable(circular_matrix.values)),columns=['values'])
 df_all['parameters'] = 'a'
-subject_ID = ['DI', 'HM', 'RM', 'KH', 'MF', 'MOt','FA', 'KT', 'SY', 'TY',
-              'MN', 'NK', 'SK', 'NKu','MY', 'YA', 'TK', 'TN', 'HH', 'MYa', 'HK']
-
+subject_ID = # subject list
 for i in range(21):
     df_all.iat[4*i,1] = 'wp'
     df_all.iat[4*i+1,1] = "ws"
@@ -584,15 +578,15 @@ for i in range(21):
 df_all.loc[0:39,'group'] = 'scz'
 df_all.loc[40:83,'group'] = 'con'
 
-df_all.to_csv('result_peggy/estimated_circular.csv') 
+df_all.to_csv('{output directory}') 
 
 sns.catplot(data=df_all,x='parameters',y='values', kind='bar',hue='group',ci=68)
-plt.savefig("result_peggy/estimated_parameters.jpg")
+plt.savefig("{output directory}/estimated_parameters.jpg")
 plt.show()
     
 
 sns.heatmap(bic_matrix,annot=True,cmap='viridis')
-plt.savefig("result_peggy/bic_matrix.jpg")
+plt.savefig("{output directory}/bic_matrix.jpg")
 plt.show()
 
 
@@ -638,11 +632,11 @@ ax.set_title('Relative BIC score')
 ax.set_xticks(x)
 ax.set_xticklabels(labels)
 ax.legend()
-plt.savefig("result_peggy/relativeBIC.jpg")
+plt.savefig("{output directory}/relativeBIC.jpg")
 plt.show()
 
 
-pkl_dir = '/Users/shuhei/Desktop/Raw_data/demographic_data/psy_data.pkl'
+pkl_dir = # demographic data directory
 psy_data = pd.read_pickle(pkl_dir)
 for index, row in psy_data.iterrows():
     subject_id = row['ID']
@@ -651,10 +645,10 @@ for index, row in psy_data.iterrows():
     df_all.loc[df_all['subject_ID'] == subject_id, 'PDI_total'] = pdi_total
     df_all.loc[df_all['subject_ID'] == subject_id, 'AQ_total'] = aq_total
 sns.lmplot(data=df_all, x='PDI_total', y='values',hue = 'parameters')
-plt.savefig("result_peggy/PDI_circular.jpg")
+plt.savefig("{output directory}/PDI_circular.jpg")
 plt.show()
 sns.lmplot(data=df_all, x='AQ_total', y='values',hue = 'parameters')
-plt.savefig("result_peggy/AQ_circular.jpg")
+plt.savefig("{output directory}/AQ_circular.jpg")
 plt.show()
 for para in ['wp','ws','alpha_p','alpha_s']:
     paras = df_all.loc[df_all['parameters']==para,'values']
