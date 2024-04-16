@@ -6,8 +6,7 @@ from nilearn.glm.second_level import SecondLevelModel
 from nilearn.reporting import make_glm_report
 
 n_subjects = 21
-label = ['DI', 'HM', 'RM','KH', 'MF','FA', 'MOt','KT','SY','TY',
-'HK','NK','SK','TN','MY', 'NKu','HH', 'MN', 'MYa','TK', 'YA']
+label = # subject list
 subjects_label = [f"sub-{i}" for i in label]
 
 
@@ -46,11 +45,11 @@ def fpr_cluster(z_map,contrast,group):
     #     title="Thresholded z map, fpr <.005, clusters > 10 voxels",
     # )
     if group=='scz':
-        group_dir = '/flash/DoyaU/shuhei/GLM/cpsy_tokyo/scz'
+        group_dir = # output directory for scz
         os.makedirs(group_dir, exist_ok=True)
         
     elif group=='control':
-        group_dir = '/flash/DoyaU/shuhei/GLM/cpsy_tokyo/control'
+        group_dir = # output directory for control
         os.makedirs(group_dir, exist_ok=True)
     # plt.savefig(os.path.join(group_dir,f'{contrast}(fpr,cluster).jpg'))
 
@@ -68,10 +67,10 @@ def fdr(z_map,contrast,group):
         threshold=threshold2,
     )
     if group=='scz':
-        group_dir = '/flash/DoyaU/shuhei/GLM/cpsy_tokyo/scz'
+        group_dir = # output directory for scz
         os.makedirs(group_dir, exist_ok=True)
     elif group=='control':
-        group_dir = '/flash/DoyaU/shuhei/GLM/cpsy_tokyo/control'
+        group_dir = # output directory for control
         os.makedirs(group_dir, exist_ok=True)
     plt.savefig(os.path.join(group_dir,f'{contrast}(fdr).jpg'))
 
@@ -88,15 +87,15 @@ def bonferroni(z_map,contrast,group):
         threshold=threshold3,
     )
     if group=='scz':
-        group_dir = '/flash/DoyaU/shuhei/GLM/cpsy_tokyo/scz'
+        group_dir = # output directory for scz
         os.makedirs(group_dir, exist_ok=True)
     elif group=='control':
-        group_dir = '/flash/DoyaU/shuhei/GLM/cpsy_tokyo/control'
+        group_dir = # output directory for control
         os.makedirs(group_dir, exist_ok=True)
     plt.savefig(os.path.join(group_dir,f'{contrast}(bonferroni).jpg'))
 
-input_dir = '/bucket/DoyaU/Shuhei/cat_fox/fMRI/GLM/cpsy_tokyo'
-output_dir = '/flash/DoyaU/shuhei/GLM/cpsy_tokyo'
+input_dir = # input directory
+output_dir = # output directory
 
 os.makedirs(f'{output_dir}/control', exist_ok=True)
 os.makedirs(f'{output_dir}/scz', exist_ok=True)
@@ -174,8 +173,7 @@ for contrast in ['Prior', 'Likelihood', 'Posterior', 'Image_timing']:
 # Control 
 
 n_subjects = 21
-label = ['DI', 'HM', 'RM','KH', 'MF','FA', 'MOt','KT','SY','TY',
-'HK','NK','SK','TN','MY', 'NKu','HH', 'MN', 'MYa','TK', 'YA']
+label = # subject list
 subjects_label = [f"sub-{i}" for i in label]
 subjects_label
 
