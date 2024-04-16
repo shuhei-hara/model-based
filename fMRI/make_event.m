@@ -4,20 +4,18 @@
 clear all;
 
 
-LIST_BIDS = {'sub-DI';'sub-FA'; 'sub-HH';'sub-HK';'sub-HM';'sub-KH';'sub-KT';'sub-MF';'sub-MN';'sub-MOt';'sub-MY';'sub-MYa';'sub-NK';'sub-NKu';'sub-RM';'sub-SK';'sub-SY';'sub-TK';'sub-TN';'sub-TY';'sub-YA'};
-LIST_STIM = {'DI';'FA'; 'HH';'HK';'HM';'KH';'KT';'MF';'MN';'MOt';'MY';'MYa';'NK';'NKu';'RM';'SK';'SY';'TK';'TN';'TY';'YA'};
-
+LIST_BIDS = # Subject list from BIDS
+LIST_STIM = # Subject List
 
 
 dir_work = pwd;
-dir_response = '/Users/shuhei/Desktop/Raw_data/Response';
-dir_output = 'events';
-dir_image = '/Users/shuhei/Desktop/stan/ImgSet';
+dir_response = # input directory
+dir_output = # output directory
+dir_image = # image directory
 
-likelihood_csv = readtable('/Users/shuhei/Desktop/new_likelihood.csv');
+likelihood_csv = # directory for supplementary task data
 true_categ = likelihood_csv.categ1_ave;
 false_categ = likelihood_csv.categ2_ave;
-
 
 
 % mkdir(dir_output)
