@@ -38,15 +38,14 @@ def create_design_matrix(sub,run,run_dir):
     tr =2.0
     n_scans = 199
     frame_times = np.arange(n_scans)
-    fmriprep_dir = '/bucket/DoyaU/Shuhei/cat_fox/fMRI/fmriprep'
+    fmriprep_dir = # fmriprep directory
     layout  = BIDSLayout(fmriprep_dir, validate=False,
                             config=['bids','derivatives'])
     confound_files = layout.get(subject=sub,datatype='func',desc='confounds',
                             extension="tsv",return_type='file')
 
-    ##ここに
-    # IM_event_dir = '/bucket/DoyaU/Shuhei/cat_fox/fMRI/event/event_IM/sub-'+str(sub)+'/sub-'+str(sub)+'_task-bayes_run-00'+str(run)+'_events.tsv'
-    IM_event_dir = '/bucket/DoyaU/Shuhei/cat_fox/fMRI/event/events/sub-'+str(sub)+'/sub-'+str(sub)+'_task-bayes_run-00'+str(run)+'_events.tsv'
+    # event related design
+    IM_event_dir = # event directory
     IM_event_file = pd.read_csv(IM_event_dir, delimiter='\t')
     IM_event_file['onset'] = IM_event_file['onset']/2
     IM_event_file['duration'] = IM_event_file['duration']/2
@@ -68,33 +67,6 @@ def create_design_matrix(sub,run,run_dir):
     X2 = X2.reindex(columns=['Prior','Likelihood','Posterior'])
     # print(X2)
 
-    # event zero duration
-    ##ここに
-    # IM_event_dir = '/bucket/DoyaU/Shuhei/cat_fox/fMRI/event/event_IM/sub-'+str(sub)+'/sub-'+str(sub)+'_task-bayes_run-00'+str(run)+'_events.tsv'
-    # IM_event_dir = '/bucket/DoyaU/Shuhei/cat_fox/fMRI/event/event_zero/sub-'+str(sub)+'/sub-'+str(sub)+'_task-bayes_run-00'+str(run)+'_events.tsv'
-    # IM_event_file = pd.read_csv(IM_event_dir, delimiter='\t')
-    # IM_event_file['onset'] = IM_event_file['onset']/2
-    # IM_event_file['duration'] = IM_event_file['duration']/2
-    # IM_event_file = IM_event_file.rename({'amplitudes': 'modulation'},axis='columns')
-
-    # print(event_file)
-    # frame_times = np.arange(199)
-
-    # X_zero = make_first_level_design_matrix(
-    #         frame_times,
-    #         IM_event_file,
-    #         drift_model=None,
-    #         hrf_model='spm',
-    #     )
- 
-    # X_zero = X_zero.loc[4:]
-    # X_zero = X_zero.drop(['constant'],axis=1)
-    # # X2 = X2.reindex(columns=['Prior','Likelihood','Posterior'])
-    # X_zero = X_zero.reindex(columns=['Pri_zero','Lik_zero','Pos_zero'])
-    # # print(X2)
-    # X3 = pd.concat([X2,X_zero],axis=1)
-
-
     
     arg = run-1
     confound_file = confound_files[arg]
@@ -112,7 +84,7 @@ def create_design_matrix(sub,run,run_dir):
     confounds_matrix = np.nan_to_num(confounds_matrix)
 
     
-    event_dir = '/bucket/DoyaU/Shuhei/cat_fox/fMRI/event/event_timing/sub-'+str(sub)+'/sub-'+str(sub)+'_task-bayes_run-00'+str(run)+'_events.tsv'
+    event_dir = # event directory for event timing
     event_file = pd.read_csv(event_dir, delimiter='\t')
     event_file['onset'] = event_file['onset']/2
     # event_file['duration'] = event_file['duration']/2
@@ -149,7 +121,7 @@ def create_design_matrix(sub,run,run_dir):
     return X
 
 def clean(sub,run):
-    fmriprep_dir = '/bucket/DoyaU/Shuhei/cat_fox/fMRI/fmriprep'
+    fmriprep_dir = # fmriprep directory
     layout = BIDSLayout(fmriprep_dir,validate=False,
                                 config=['bids','derivatives'])
 
@@ -296,7 +268,6 @@ def first_level_wf(sub,in_files, output_dir, contrast_list, fwhm=6.0, name='wf_1
     #         title=f'{contrast_id}, fixed effects')
     #     plt.savefig(os.path.join(output_dir,f'{contrast_id}, fixed effect.jpg'))
 
-    #     #runごとって必要なのか？　なんか要らないんじゃないか？
     #     # for run in range(1,6):
     #     #     index = run-1
     #     #     fmri_glm = fmri_glm.fit(fmri_img[index], design_matrices=design_matrices[index])
@@ -311,7 +282,6 @@ def first_level_wf(sub,in_files, output_dir, contrast_list, fwhm=6.0, name='wf_1
     #     #     beta_map_path = os.path.join(run_dir, f'run{run}_{contrast_id}_z_map.nii.gz') # This is the beta map, right?
     #     #     z_map.to_filename(beta_map_path)
 
-    #     # ここで補正をかける
     #     clean_map, threshold = threshold_stats_img(
     #         z_map, alpha=0.001, height_control="fpr", cluster_threshold=10
     #     )
