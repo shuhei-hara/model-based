@@ -47,7 +47,7 @@ def circular_inference(prior, likelihood,param):
 data, image_data = preprocessing.preprocess()
 
 # Change the likelihood value 
-likelihood_dir='/Users/shuhei/Desktop/workspace/behavior/new_likelihood.csv'
+likelihood_dir= # likelihood directory
 like_data = pd.read_csv(likelihood_dir)
 
 for i in range(1,101):
@@ -560,7 +560,6 @@ for model_i,ob in enumerate([c_generated_simple,c_generated_weighted,c_generated
         # bic_matrix.iloc[sub,3] = bic_circular
         # sigma_matrix.iloc[sub,3] = sigma_squared_circular
 
-        #ここにbest modelを加えていく。
         compare_dict = {"Simple":bic_simple, "Weighted": bic_weight, "Alpha": bic_alpha,"Circular": bic_circular}
 
         if min(compare_dict, key=compare_dict.get)=='Simple':
@@ -578,7 +577,7 @@ for i in range(4):
 sns.heatmap(confusion_matrix,annot=True,cmap='viridis')
 plt.xlabel('fit model')
 plt.ylabel('simiulated model')
-plt.savefig("result_peggy/model_recovery.jpg")
+plt.savefig("{output directory}/model_recovery.jpg")
 plt.show()
 
 # sns.heatmap(bic_matrix,annot=True,cmap='viridis')
