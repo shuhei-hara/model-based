@@ -103,7 +103,6 @@ def main():
     from bids.layout import BIDSLayout
     from nipype import logging as nlogging
     set_start_method('forkserver')
-    print('nakaha?')
 
     opts = get_parser().parse_args()
 
