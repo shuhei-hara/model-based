@@ -10,11 +10,10 @@ import re
 def preprocess():
     "all subjects"
 
-    subject_ID = ['DI','HM','RM','KH','MF', 'MOt','FA','KT','SY','TY',
-              'MN','NK','SK','NKu','MY','YA','TK','TN','HH','MYa','HK']
-
+    subject_ID = # subject list
+    
     n_subjects = len(subject_ID)
-    n_scz = 10 #ここは指定
+    n_scz = 10
     n_con = n_subjects - n_scz
     pos = np.zeros((n_subjects*100,2))
     corloc = np.zeros((n_subjects*100,2))
