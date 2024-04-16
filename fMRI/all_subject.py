@@ -63,13 +63,12 @@ def bonferroni(z_map,contrast):
     )
     plt.savefig(os.path.join(group_dir,f'{contrast}(bonferroni).jpg'))
 
-input_dir = '/bucket/DoyaU/Shuhei/cat_fox/fMRI/GLM/cpsy_tokyo'
-group_dir = '/flash/DoyaU/shuhei/GLM/cpsy_tokyo/all_subject'
+input_dir = # input directory
+group_dir = # output directory
 os.makedirs(group_dir, exist_ok=True)
 
 n_subjects = 21
-label = ['DI', 'HM', 'RM','KH', 'MF','FA', 'MOt','KT','SY','TY',
-'HK','NK','SK','TN','MY', 'NKu','HH', 'MN', 'MYa','TK', 'YA']
+label = # subject list
 subjects_label = [f"sub-{i}" for i in label]
 
 
