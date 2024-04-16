@@ -132,7 +132,7 @@ sm = pystan.StanModel(model_code=stan_model)
 data, image_data = preprocessing.preprocess()
 
 # Change the likelihood value 
-likelihood_dir='/Users/shuhei/Desktop/workspace/behavior/new_likelihood.csv'
+likelihood_dir= # likelihood directory
 like_data = pd.read_csv(likelihood_dir)
 
 for i in range(1,101):
@@ -311,7 +311,7 @@ plt.legend()
 plt.xlabel('true')
 plt.ylabel('predict')
 plt.plot([0.4,1],[0.4,1])
-plt.savefig("result_peggy/wp_parameter_recovery.jpg")
+plt.savefig("{output directory}/wp_parameter_recovery.jpg")
 plt.show()
 
 plt.scatter(true_ws_all,estimated_ws,label='ws')
@@ -319,7 +319,7 @@ plt.legend()
 plt.xlabel('true')
 plt.ylabel('predict')
 plt.plot([0.4,1],[0.4,1])
-plt.savefig("result_peggy/ws_parameter_recovery.jpg")
+plt.savefig("{output directory}/ws_parameter_recovery.jpg")
 plt.show()
 
 
@@ -328,7 +328,7 @@ plt.legend()
 plt.xlabel('true')
 plt.ylabel('predict')
 plt.plot([0,0.6],[0,0.6])
-plt.savefig("result_peggy/alpha_p_parameter_recovery.jpg")
+plt.savefig("{output directory}/alpha_p_parameter_recovery.jpg")
 plt.show()
 
 plt.scatter(true_alpha_s_all,estimated_alpha_s,label='alpha_s')
@@ -336,7 +336,7 @@ plt.legend()
 plt.xlabel('true')
 plt.ylabel('predict')
 plt.plot([0,0.6],[0,0.6])
-plt.savefig("result_peggy/alpha_s_parameter_recovery.jpg")
+plt.savefig("{output directory}/alpha_s_parameter_recovery.jpg")
 plt.show()
 
 res_wp = stats.pearsonr(true_wp_all,estimated_wp)
