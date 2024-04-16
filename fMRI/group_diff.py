@@ -12,8 +12,7 @@ from nilearn.plotting import plot_design_matrix
 import matplotlib.pyplot as plt
 
 n_subjects = 21
-label = ['DI', 'HM', 'RM','KH', 'MF','FA', 'MOt','KT','SY','TY',
-'HK','NK','SK','TN','MY', 'NKu','HH', 'MN', 'MYa','TK', 'YA']
+label = # subject list
 subjects_label = [f"sub-{i}" for i in label]
 
 
@@ -75,9 +74,9 @@ def bonferroni(z_map,contrast):
     plt.tight_layout()
     plt.savefig(os.path.join(group_diff_dir,f'{contrast}(bonferroni).jpg'))
 
-# group_diff_dir = '/home/s/shuhei-hara1/workspace/conference/figures'
-input_dir = '/bucket/DoyaU/Shuhei/cat_fox/fMRI/GLM/cpsy_tokyo'
-group_diff_dir = '/flash/DoyaU/shuhei/GLM/cpsy_tokyo/group-diff'
+
+input_dir = # input directory
+group_diff_dir = # output directory
 os.makedirs(group_diff_dir, exist_ok=True)
 
 
